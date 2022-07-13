@@ -35,7 +35,13 @@
             <div id="root">
 
                 <ul>
-                    <li v-for="email in randomEmail">{{ email }}</li>
+
+                    <li v-for="email in randomEmail"
+                        v-if="randomEmail.length === 10"
+                    >
+                    {{ email }}
+                    </li>
+                    
                 </ul>
                 
             </div>
