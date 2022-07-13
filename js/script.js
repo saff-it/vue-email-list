@@ -5,14 +5,22 @@ const app = new Vue (
 
         
         data: {  
-            randomEmail: '',
+            randomEmail: [
+
+            ],
         },
 
 
         methods: {
 
-            funzione: function(){
+            getEmail: function(){
                 
+                axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+                .then( (response) => {
+                    this.randomEmail.push(response.data.response);
+                    console.log(this.randomEmail);
+    
+                });
 
             },
 
@@ -21,13 +29,11 @@ const app = new Vue (
 
         
         created(){
-            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-            .then( (response) => {
-                this.randomEmail = response.data.response;
-                console.log(this.randomEmail);
-
-            });
-        }
+            
+            for ( let i = 0; i < 10; i++ ){
+                this.getEmail();
+            };
+        },
 
     },
 
